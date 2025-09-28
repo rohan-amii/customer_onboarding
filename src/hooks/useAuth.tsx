@@ -613,7 +613,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     verifyOtp,
     refreshAuthState,
     isOnline
-    isOnline
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
