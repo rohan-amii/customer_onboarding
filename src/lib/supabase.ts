@@ -29,29 +29,6 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   }
 });
 
-// Add debugging for Supabase client methods
-const originalFrom = supabase.from;
-supabase.from = function(table) {
-  console.log('Supabase query on table:', table);
-  const query = originalFrom.call(this, table);
-  
-  // Add debugging for select operations
-  const originalSelect = query.select;
-  query.select = function(...args: any[]) {
-    console.log('Supabase select operation:', { table, args });
-    return originalSelect.apply(this, args);
-  };
-  
-  // Add debugging for eq operations
-  const originalEq = query.eq;
-  query.eq = function(column: string, value: any) {
-    console.log('Supabase eq operation:', { table, column, value });
-    return originalEq.apply(this, arguments);
-  };
-  
-  return query;
-};
-
 // Types for Indian Investment Onboarding System
 export interface Profile {
   id: string;
